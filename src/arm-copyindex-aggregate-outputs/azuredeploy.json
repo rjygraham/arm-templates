@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "quantity": {
+            "type": "int",
+            "defaultValue": 3
+        }
+    },
+    "variables": {
+        "emptyArray": []
+    },
+    "resources": [
+        {
+            "apiVersion": "2017-05-10",
+            "name": "[concat('linked-', copyIndex('exampleCopy', 1))]",
+            "type": "Microsoft.Resources/deployments",
+            "copy": {
+                "name": "exampleCopy",
+                "count": "[parameters('quantity')]",
+                "mode": "Serial"
+            },
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[uri(deployment().properties.templateLink.uri, 'linked.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "state": {
+                        "value": "[if(equals(copyIndex('exampleCopy'), 0), variables('emptyArray'), reference(concat('linked-', copyIndex('exampleCopy'))).outputs.state.value)]"
+                    },
+                    "ping": {
+                        "value": "[copyIndex('exampleCopy', 1)]"
+                    }
+                }
+            }
+        }
+    ],
+    "outputs": {
+        "aggregate": {
+            "type": "array",
+            "value": "[reference(concat('linked-', parameters('quantity'))).outputs.state.value]"
+        }
+    }
+}
