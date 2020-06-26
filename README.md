@@ -9,10 +9,10 @@ Useful for when you need to have downstream ARM dependencies on values generated
 
 This template doesn't deploy any resources.
 
-```bash
-az group create -g arm-copyindex-aggregate-outputs -l eastus
-az group deployment create -g arm-copyindex-aggregate-outputs --template-uri https://raw.githubusercontent.com/rjygraham/arm-templates/master/src/arm-copyindex-aggregate-outputs/azuredeploy.json
-```
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Frjygraham%2Farm-templates%2Fmaster%2Fsrc%2Farm-copyindex-aggregate-outputs%2Fazuredeploy.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
+[arm-copyindex-aggregate-outputs](Samples\arm-copyindex-aggregate-outputs)
+
+## Start/Deallocate VM
+
+This template deploys a Logic App that executes a Resource Graph query to find all VMs tagged with a specific time to be started or deallocated. If VMs are found that match the current time, the Logic App proceeds in started or deallocating all matched VMs.
+
+[logicapp-start-deallocate-vm](Samples\logicapp-start-deallocate-vm)
