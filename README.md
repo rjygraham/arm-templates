@@ -9,10 +9,10 @@ Useful for when you need to have downstream ARM dependencies on values generated
 
 This template doesn't deploy any resources.
 
-[arm-copyindex-aggregate-outputs](Samples\arm-copyindex-aggregate-outputs)
+[arm-copyindex-aggregate-outputs](Samples/arm-copyindex-aggregate-outputs)
 
 ## Start/Deallocate VM
 
 This template deploys a Logic App that executes a Resource Graph query to find all VMs tagged with a specific time to be started or deallocated. If VMs are found that match the current time, the Logic App proceeds in started or deallocating all matched VMs.
 
-[logicapp-start-deallocate-vm](Samples\logicapp-start-deallocate-vm)
+[logicapp-start-deallocate-vm](Samples/logicapp-start-deallocate-vm)
